@@ -1,45 +1,88 @@
-#gh-icon{
-    position: absolute;
-    top: -6px;
-    right: -6px;
-}
-#gh-icon i {
-    font-size: 40px;
-    color: rgb(32, 76, 112);
-}
 .container {
-    margin-top: 60px;
+  margin-top: 60px;
 }
 .yt-container {
-    margin: 50px auto;
-    text-align: center;
+  margin: 50px auto;
+  text-align: center;
 }
 .downloadBtn {
-    margin: 10px auto;
+  margin: 10px auto;
 }
 .header {
-    text-align: center;
-    margin-bottom: 50px;
+  text-align: center;
+  margin-bottom: 50px;
 }
 .header .logo {
-    width: 250px;
+  width: 250px;
 }
 form .radioBtns {
-    text-align: left;
+  text-align: left;
 }
-.container .tab-content .tw-alert i{
-    color: rgb(247, 82, 82);
-    font-size: 25px;
+.container .tab-content .tw-alert i {
+  color: rgb(247, 82, 82);
+  font-size: 25px;
 }
 
 @media only screen and (max-width: 500px) {
-    .header .logo {
-        width: 200px;
-    }
+  .header .logo {
+    width: 200px;
+  }
 }
 
 @media only screen and (max-width: 200px) {
-    .header .logo {
-        width: 100px;
-    }
+  .header .logo {
+    width: 100px;
+  }
+}
+
+.github-corner {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  color: rgb(255, 64, 129);
+  font-weight: 500;
+}
+
+svg {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  font-weight: 500;
+  width: 80;
+  height: 80;
+  vertical-align: middle;
+  fill: #151513;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  border: 0;
+  right: 0;
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
 }
