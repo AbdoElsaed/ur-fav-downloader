@@ -1,0 +1,45 @@
+#gh-icon{
+    position: absolute;
+    top: -6px;
+    right: -6px;
+}
+#gh-icon i {
+    font-size: 40px;
+    color: rgb(32, 76, 112);
+}
+.container {
+    margin-top: 60px;
+}
+.yt-container {
+    margin: 50px auto;
+    text-align: center;
+}
+.downloadBtn {
+    margin: 10px auto;
+}
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.header .logo {
+    width: 250px;
+}
+form .radioBtns {
+    text-align: left;
+}
+.container .tab-content .tw-alert i{
+    color: rgb(247, 82, 82);
+    font-size: 25px;
+}
+
+@media only screen and (max-width: 500px) {
+    .header .logo {
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 200px) {
+    .header .logo {
+        width: 100px;
+    }
+}

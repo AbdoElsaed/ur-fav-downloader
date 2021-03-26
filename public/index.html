@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/imgs/favicon.png" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/static/manifest.json">
+    <title>ur-fav-downloader</title>
+  </head>
+  <body>
+
+    <div id="gh-icon">
+      <a target="_blank" href="https://github.com/AbdoElsaed/ur-fav-downloader">
+        <i class="fab fa-github-square"></i>
+      </a>
+    </div>
+
+    <div class="container">
+
+      <div class="header">
+        <img class="logo" src="/imgs/logo.png" alt="">
+        <!-- <p>Download videos from popular platforms</p> -->
+      </div>
+
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="youtube-tab" data-bs-toggle="pill" data-bs-target="#youTab" type="button" role="tab" aria-controls="youTab" aria-selected="true">Youtube</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="facebook-tab" data-bs-toggle="pill" data-bs-target="#fbTab" type="button" role="tab" aria-controls="fbTab" aria-selected="false">Facebook</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="instagram-tab" data-bs-toggle="pill" data-bs-target="#instaTab" type="button" role="tab" aria-controls="instaTab" aria-selected="false">Instagram</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="twitter-tab" data-bs-toggle="pill" data-bs-target="#twTab" type="button" role="tab" aria-controls="twTab" aria-selected="false">Twitter</button>
+        </li>
+        <!-- <li class="nav-item" role="presentation">
+          <button class="nav-link" id="reddit-tab" data-bs-toggle="pill" data-bs-target="#rdTab" type="button" role="tab" aria-controls="rdTab" aria-selected="false">Reddit</button>
+        </li> -->
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+
+        <!-- start youtube form -->
+        <div class="tab-pane fade show active" id="youTab" role="tabpanel" aria-labelledby="youtube-tab">
+          <div class="yt-container">
+            <form method="POST" action="/yt">
+                <div class="mb-3">
+                    <input autocomplete="off" name="url" type="text" class="form-control" id="ytUrlInput" placeholder="https://youtube.com/example">
+                </div>
+
+                <div class="radioBtns">
+                  <input class="form-check-input" type="radio" name="quality" value="sd" id="radioBtn1">
+                  <label class="form-check-label" for="radioBtn1"> SD </label> <br />
+                  <input class="form-check-input" type="radio" name="quality" value="hd" id="radioBtn2">
+                  <label class="form-check-label" for="radioBtn2"> HD </label> <br />
+
+                  <input class="form-check-input" type="checkbox" name="audio" value="audioonly" id="auioBtn">
+                  <label class="form-check-label" for="auioBtn"> audio only </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary downloadBtn">
+                  Download
+                  <i class="fa fa-download"></i>
+                </button>
+            </form>
+          </div>
+        </div>
+        <!-- end youtube form -->
+
+        <!-- start facebook form -->
+        <div class="tab-pane fade" id="fbTab" role="tabpanel" aria-labelledby="facebook-tab">
+          <div class="yt-container">
+            <form method="POST" action="/fb">
+                <div class="mb-3">
+                    <input autocomplete="off" name="url" type="text" class="form-control" id="fbUrlInput" placeholder="https://facebook.com/example">
+                </div>
+                
+                <div class="radioBtns">
+                  <input class="form-check-input" type="radio" name="quality" value="sd" id="radioBtn3">
+                  <label class="form-check-label" for="radioBtn3"> SD </label> <br />
+                  <input class="form-check-input" type="radio" name="quality" value="hd" id="radioBtn4">
+                  <label class="form-check-label" for="radioBtn4"> HD </label> <br />
+                </div>
+
+                <button type="submit" class="btn btn-primary downloadBtn">
+                  Download
+                  <i class="fa fa-download"></i>
+                </button>
+            </form>
+          </div>
+        </div>
+        <!-- end facebook form -->
+
+        <!-- start instagram form -->
+        <div class="tab-pane fade" id="instaTab" role="tabpanel" aria-labelledby="instagram-tab">
+          <div class="yt-container">
+            <form method="POST" action="/insta">
+                <div class="mb-3">
+                    <input autocomplete="off" name="url" type="text" class="form-control" id="instaUrlInput" placeholder="https://instagram.com/example">
+                </div>
+                <button type="submit" class="btn btn-primary downloadBtn">
+                  Download
+                  <i class="fa fa-download"></i>
+                </button>
+            </form>
+          </div>
+        </div>
+        <!-- end instagram form -->
+        
+        <!-- start twitter form -->
+        <div class="tab-pane fade" id="twTab" role="tabpanel" aria-labelledby="twitter-tab">
+          <div class="yt-container">
+            <h5 class="tw-alert"> <i class="fa fa-exclamation-triangle"></i> Twitter functionality still under development!</h5>
+            <!-- <form method="POST" action="/tw">
+                <div class="mb-3">
+                    <input autocomplete="off" name="url" type="text" class="form-control" id="twUrlInput" placeholder="https://twitter.com/example">
+                </div>
+                <button type="submit" class="btn btn-primary downloadBtn">Download</button>
+            </form> -->
+          </div>
+        </div>
+        <!-- end twitter form -->
+
+        <!-- start reddit form -->
+        <!-- <div class="tab-pane fade" id="rdTab" role="tabpanel" aria-labelledby="redit-tab">
+          <div class="yt-container">
+            <form method="POST" action="/rd">
+                <div class="mb-3">
+                    <input autocomplete="off" name="url" type="text" class="form-control" id="instaUrlInput" placeholder="https://reddit.com/example">
+                </div>
+                <button type="submit" class="btn btn-primary downloadBtn">
+                  Download
+                  <i class="fa fa-download"></i>
+                </button>
+            </form>
+          </div>
+        </div> -->
+        <!-- end reddit form -->
+
+      
+      </div>
+
+
+        
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script>
+      if (!navigator.serviceWorker.controller) {
+          navigator.serviceWorker.register("/sw.js").then(function(reg) {
+              console.log("Service worker has been registered for scope: " + reg.scope);
+          });
+      }
+     </script>
+  </body>
+</html>

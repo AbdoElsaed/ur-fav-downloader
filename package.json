@@ -1,0 +1,32 @@
+{
+  "name": "ur_fav_downloader",
+  "version": "1.0.0",
+  "description": "download videos from popular applications",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "video",
+    "downloader",
+    "video downloader",
+    "facebook",
+    "youtube",
+    "instagram",
+    "twitter",
+    "ur fav downloader"
+  ],
+  "author": "Apdo",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "got": "^11.8.2",
+    "ytdl-core": "^4.5.0"
+  },
+  "engines": {
+    "node": "10.19.0"
+  }
+}

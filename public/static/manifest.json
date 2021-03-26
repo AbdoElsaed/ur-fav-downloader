@@ -1,0 +1,17 @@
+{
+    "name": "Ur Fav Downloader",
+    "short_name": "UFD",
+    "theme_color": "#0B5ED7",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "https://ur-fav-downloader.herokuapp.com/",
+    "description": "multi platform video downloader web app",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "../imgs/favicon.png",
+            "sizes": "1024x1024"
+        }
+    ]
+}
