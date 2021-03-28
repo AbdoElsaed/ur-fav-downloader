@@ -38,6 +38,7 @@ app.post("/yt", async (req, res) => {
 
   } catch (err) {
     console.log(err);
+    return res.send(error);
   }
 });
 
@@ -62,6 +63,7 @@ app.post("/fb", async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    return res.send(error);
   }
 });
 
@@ -69,10 +71,14 @@ app.post("/insta", async (req, res) => {
   try {
     got(req.body.url).then((response) => {
       const link = response.body.split('<meta property="og:video" content="')[1].split('" />')[0];
+      if(!link) {
+        return res.send('invalid link!')
+      }
       return res.redirect(link);
     });
   } catch (error) {
     console.log(error);
+    return res.send(error);
   }
 });
 
