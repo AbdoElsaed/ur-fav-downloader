@@ -5,6 +5,13 @@ const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const fetch = require("node-fetch");
+const axios = require("axios");
+const cheerio = require("cheerio");
+
+const ffmpeg = require("fluent-ffmpeg");
+const proc = new ffmpeg();
+
 
 const got = require("got");
 
@@ -69,34 +76,77 @@ app.post("/fb", async (req, res) => {
 
 app.post("/insta", async (req, res) => {
   try {
-    got(req.body.url).then((response) => {
-      console.log('response',response);
-      const link = response.body.split('<meta property="og:video" content="')[1];
-      console.log('link', link);
-      return;
-      // const link = response.body.split('<meta property="og:video" content="')[1].split('" />')[0];
-      // if(!link) {
-      //   return res.send('invalid link!')
-      // }
-      // return res.redirect(link);
-    });
+    // got(req.body.url).then((response) => {
+      
+    //   // const link = response.body.split('<meta property="og:video" content="')[1].split('" />')[0];
+    //   // if(!link) {
+    //   //   return res.send('invalid link!')
+    //   // }
+    //   // return res.redirect(link);
+    // });
+
+    const html = await axios.get(req.body.url);
+    const $ = cheerio.load(html.data);
+    const videoString = $("meta[property='og:video']").attr("content");
+    if(videoString) {
+      return res.redirect(link);
+    } else {
+      return res.send('invalid link!');
+    }
+
   } catch (error) {
     console.log(error);
-    return res.send(error);
+    return res.send('invalid link!', error);
   }
 });
 
-// app.post("/rd", async (req, res) => {
-//   try {
-//     got('https://vred.rip/api/vreddit/c3yz1mambar51').then((response) => {
-//       return res.send(response.body);
-//     });
+app.post("/rd", async (req, res) => {
+  try {
+    
+    const url = req.body.url;
+    const link = url.substring(0, url.lastIndexOf('/')+1);
+
+    const response = await got(`${link}.json`);
+    const body = JSON.parse(response.body);
+    const data = body[0].data.children[0].data;
+    const fallback_url = data.secure_media.reddit_video.fallback_url;
+    let q;
+    if(fallback_url) {
+      q = fallback_url.split('DASH_')[1].split('.mp4')[0];
+    }
+
+    const audio = q ? fallback_url.replace(q, 'audio') : null;
+
+    console.log('fallback_url', fallback_url);
+    console.log('audio', audio);
+
+    var outStream = fs.createWriteStream('./output.mp4');
+
+    proc.addInput(fallback_url)
+      // .output('-')
+      .format('mp4')
+      .on("error", err => console.log(err))
+      .on('end', () => console.log('Done'));
+    
+    if(audio) {
+      proc.addInput(audio);
+    }
+
+    console.log('Downloading and converting...');
+    proc.pipe(outStream);
+    // proc.run();
+    
+    // res.header("Content-Disposition", `attachment; filename="lol.mp4"`);
+    // proc.stdout.pipe(res).run();
 
 
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+    // return res.redirect(fallback_url);
+
+
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // app.post("/tw", async (req, res) => {
 //   try {
