@@ -89,7 +89,7 @@ app.post("/insta", async (req, res) => {
     const $ = cheerio.load(html.data);
     const videoString = $("meta[property='og:video']").attr("content");
     if(videoString) {
-      return res.redirect(link);
+      return res.redirect(videoString);
     } else {
       return res.send('invalid link!');
     }
