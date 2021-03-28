@@ -70,11 +70,15 @@ app.post("/fb", async (req, res) => {
 app.post("/insta", async (req, res) => {
   try {
     got(req.body.url).then((response) => {
-      const link = response.body.split('<meta property="og:video" content="')[1].split('" />')[0];
-      if(!link) {
-        return res.send('invalid link!')
-      }
-      return res.redirect(link);
+      console.log('response',response);
+      const link = response.body.split('<meta property="og:video" content="')[1];
+      console.log('link', link);
+      return;
+      // const link = response.body.split('<meta property="og:video" content="')[1].split('" />')[0];
+      // if(!link) {
+      //   return res.send('invalid link!')
+      // }
+      // return res.redirect(link);
     });
   } catch (error) {
     console.log(error);
