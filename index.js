@@ -109,6 +109,7 @@ app.post("/rd", async (req, res) => {
     const response = await got(`${link}.json`);
     const body = JSON.parse(response.body);
     const data = body[0].data.children[0].data;
+    const fielName = `${data.title}_r/${data.subreddit ? data.subreddit:''}`;
     const fallback_url = data.secure_media.reddit_video.fallback_url;
     let q;
     if(fallback_url) {
@@ -120,28 +121,17 @@ app.post("/rd", async (req, res) => {
     console.log('fallback_url', fallback_url);
     console.log('audio', audio);
 
-    var outStream = fs.createWriteStream('./output.mp4');
+    res.header("Content-Disposition", `attachment; filename="${fielName}.webm"`);
 
-    proc.addInput(fallback_url)
-      // .output('-')
-      .format('mp4')
+    await proc
+      .addInput(fallback_url)
+      .addInput(audio)
+      .format('webm')
       .on("error", err => console.log(err))
-      .on('end', () => console.log('Done'));
-    
-    if(audio) {
-      proc.addInput(audio);
-    }
+      .on('end', () => console.log('Done'))
+      .pipe(res);
 
     console.log('Downloading and converting...');
-    proc.pipe(outStream);
-    // proc.run();
-    
-    // res.header("Content-Disposition", `attachment; filename="lol.mp4"`);
-    // proc.stdout.pipe(res).run();
-
-
-    // return res.redirect(fallback_url);
-
 
   } catch (error) {
     console.log(error);
